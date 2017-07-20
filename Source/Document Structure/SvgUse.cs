@@ -1,10 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Web;
 using System.Xml;
 using System.Xml.Serialization;
+#if NETFULL
 using System.Drawing.Drawing2D;
+using System.Drawing;
+#else
+using System.DrawingCore.Drawing2D;
+using System.DrawingCore;
+#endif
 
 namespace Svg
 {
@@ -56,15 +61,15 @@ namespace Svg
             this.Y = 0;
         }
 
-        public override System.Drawing.Drawing2D.GraphicsPath Path(ISvgRenderer renderer)
+        public override GraphicsPath Path(ISvgRenderer renderer)
         {
             SvgVisualElement element = (SvgVisualElement)this.OwnerDocument.IdManager.GetElementById(this.ReferencedElement);
             return (element != null) ? element.Path(renderer) : null;
         }
 
-        public override System.Drawing.RectangleF Bounds
+        public override RectangleF Bounds
         {
-            get { return new System.Drawing.RectangleF(); }
+            get { return new RectangleF(); }
         }
 
         protected override bool Renderable { get { return false; } }
@@ -107,6 +112,5 @@ namespace Svg
 
             return newObj;
         }
-
     }
 }
