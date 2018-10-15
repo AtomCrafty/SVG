@@ -63,12 +63,6 @@ namespace Svg
         	
             Color c = this.Colour;
 
-            // Return the name if it exists
-            if (c.IsKnownColor)
-            {
-                return c.Name;
-            }
-
             // Return the hex value
             return String.Format("#{0}", c.ToArgb().ToString("x").Substring(2));
         }
