@@ -1,9 +1,9 @@
-
 Source/**/bin/
 Source/**/obj/
 Source/**/*.csproj.user
 Source/**/*.suo
 Source/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+Source/SVG.xml
 Samples/SVGViewer/obj/
 Samples/SVGViewer/bin/
 Samples/SVGViewer/SVGViewer.OpenCover.Settings
@@ -15,3 +15,11 @@ Tests/**/*.csproj.user
 Tests/**/*.suo
 *.trx
 Source/TestResults/
+*~
+*.swp
+.vs/**
+.vs
+packages/
+obj/
+bin/
+packages.config

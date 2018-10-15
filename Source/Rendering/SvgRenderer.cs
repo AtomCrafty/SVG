@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
+#if NETFULL
 using System.Drawing.Drawing2D;
+using System.Drawing;
 using System.Drawing.Text;
+#else
+using System.DrawingCore.Drawing2D;
+using System.DrawingCore;
+using System.DrawingCore.Text;
+#endif
 
 namespace Svg
 {
@@ -111,8 +117,8 @@ namespace Svg
         {
             var g = Graphics.FromImage(image);
             g.TextRenderingHint = TextRenderingHint.AntiAlias;
-            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
-            g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            g.PixelOffsetMode = PixelOffsetMode.Half;
+            g.CompositingQuality = CompositingQuality.HighQuality;
             g.TextContrast = 1;
             return new SvgRenderer(g);
         }

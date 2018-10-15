@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
+#if NETFULL
 using System.Drawing.Drawing2D;
+using System.Drawing;
+#else
+using System.DrawingCore.Drawing2D;
+using System.DrawingCore;
+#endif
 using System.Xml;
 using System.Linq;
 using Svg.Transforms;
@@ -557,7 +562,6 @@ namespace Svg
                     (!attr.Attribute.InAttributeDictionary || _attributes.ContainsKey(attr.Attribute.Name)))
                 {
                     object propertyValue = attr.Property.GetValue(this);
-                    string value = (string)attr.Property.Converter.ConvertTo(propertyValue, typeof(string));
 
                     forceWrite = false;
                     writeStyle = (attr.Attribute.Name == "fill");
@@ -577,6 +581,7 @@ namespace Svg
                         }
                     }
 
+                    string value = propertyValue != null ? (string)attr.Property.Converter.ConvertTo(propertyValue, typeof(string)) : null;
                     if (propertyValue != null)
                     {
                         var type = propertyValue.GetType();
